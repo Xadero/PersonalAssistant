@@ -1,0 +1,21 @@
+﻿<Window x:Class="GothicPersonalAssistant.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GothicPersonalAssistant"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="143.296" Width="153.911">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="ChooseAssistant" Content="Wybierz" HorizontalAlignment="Left" Margin="10,68,0,10" Width="120" Click="ChooseAssistant_Click"/>
+        <ComboBox x:Name="SelectAssistant" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem x:Name="Gothic" IsSelected="True">Gothic</ComboBoxItem>
+            <ComboBoxItem x:Name="Classic">Klasyczny</ComboBoxItem>
+        </ComboBox>
+        <Label Content="Wybierz asystenta" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</Window>

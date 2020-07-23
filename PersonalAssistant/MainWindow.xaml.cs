@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Speech.Recognition;
+using System.Speech.Synthesis;
+using System.Globalization;
+using System.IO;
 
 namespace GothicPersonalAssistant
 {
@@ -23,6 +27,23 @@ namespace GothicPersonalAssistant
         public MainWindow()
         {
             InitializeComponent();
+
+        }
+
+        private void ChooseAssistant_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectAssistant.SelectedIndex == 0)
+            {
+                var gothicAssistant = new GothicPersonalAssistant();
+                gothicAssistant.Show();
+                this.Hide();
+            }
+            else
+            {
+                var classicAssistant = new ClassicPersonalAssistant();
+                classicAssistant.Show();
+                this.Hide();
+            }
         }
     }
 }
