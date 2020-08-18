@@ -73,6 +73,9 @@
     <Resource Include="Images\Xardas.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\Sleeper.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Sounds\Diego\DIA_DIEGONW_NEEDHELP_PLAN_11_01.WAV">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
