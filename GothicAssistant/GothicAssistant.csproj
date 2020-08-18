@@ -43,28 +43,38 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="eAssistant.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Recognizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assistant.config" />
-    <None Include="Commands.json" />
+    <Content Include="Commands.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\Diego.png">
+    <Resource Include="Images\Diego.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Gorn.png">
+    </Resource>
+    <Resource Include="Images\Gorn.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Lester.png">
+    </Resource>
+    <Resource Include="Images\Lester.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Milten.png">
+    </Resource>
+    <Resource Include="Images\Milten.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Xardas.png">
+    </Resource>
+    <Resource Include="Images\Xardas.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Sounds\Diego\DIA_DIEGONW_NEEDHELP_PLAN_11_01.WAV">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Sounds\Diego\INFO_DIEGO_GAMESTART_11_00.WAV">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -84,6 +94,18 @@
     <Content Include="Sounds\Xardas\INFO_XARDAS_DISTURB_14_01.WAV">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SpeechRecognizer.Service\SpeechRecognizer.Service.csproj">
+      <Project>{FDA032BF-2206-4356-99F9-55425F9BD725}</Project>
+      <Name>SpeechRecognizer.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
