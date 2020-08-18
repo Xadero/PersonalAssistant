@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="GothicPersonalAssistant" Height="450" Width="800">
     <Grid>
-        
+        <ComboBox x:Name="SelectAssistant" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="SelectAssistant_SelectionChanged">
+            <ComboBoxItem x:Name="Diego" IsSelected="True">Diego</ComboBoxItem>
+            <ComboBoxItem x:Name="Milten">Milten</ComboBoxItem>
+            <ComboBoxItem x:Name="Xardas">Xadras</ComboBoxItem>
+            <ComboBoxItem x:Name="Gorn">Gorn</ComboBoxItem>
+            <ComboBoxItem x:Name="Lester">Lester</ComboBoxItem>
+        </ComboBox>
+        <Image x:Name="AssistantIcon" HorizontalAlignment="Left" Height="107" Margin="10,68,0,0" VerticalAlignment="Top" Width="120" Source="Diego.png"/>
+        <Label Content="Twój asystent:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>

@@ -4,6 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalAssistant", "PersonalAssistant\PersonalAssistant.csproj", "{C0558C26-4AFE-40BF-AB6F-7C66BC89A0C7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FDA032BF-2206-4356-99F9-55425F9BD725} = {FDA032BF-2206-4356-99F9-55425F9BD725}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeechRecognizer.Service", "SpeechRecognizer.Service\SpeechRecognizer.Service.csproj", "{FDA032BF-2206-4356-99F9-55425F9BD725}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GothicAssistant", "GothicAssistant\GothicAssistant.csproj", "{BC7C887F-C122-4DBE-B627-5C79BF9C65C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +22,14 @@ Global
 		{C0558C26-4AFE-40BF-AB6F-7C66BC89A0C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0558C26-4AFE-40BF-AB6F-7C66BC89A0C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0558C26-4AFE-40BF-AB6F-7C66BC89A0C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDA032BF-2206-4356-99F9-55425F9BD725}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDA032BF-2206-4356-99F9-55425F9BD725}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDA032BF-2206-4356-99F9-55425F9BD725}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDA032BF-2206-4356-99F9-55425F9BD725}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC7C887F-C122-4DBE-B627-5C79BF9C65C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC7C887F-C122-4DBE-B627-5C79BF9C65C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC7C887F-C122-4DBE-B627-5C79BF9C65C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC7C887F-C122-4DBE-B627-5C79BF9C65C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

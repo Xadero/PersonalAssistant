@@ -1,26 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
+using System.Diagnostics;
+using SpeechRecognizer.Service;
+using Newtonsoft.Json;
+using GothicAssistant;
+using System.Windows.Media.Imaging;
 
 namespace GothicPersonalAssistant
 {
-    /// <summary>
-    /// Interaction logic for GothicPersonalAssistant.xaml
-    /// </summary>
     public partial class GothicPersonalAssistant : Window
     {
         SpeechRecognitionEngine recognizer = new SpeechRecognitionEngine();
@@ -29,20 +20,15 @@ namespace GothicPersonalAssistant
         int RecTimeout = 0;
         System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
         Random rnd = new Random();
+        int SelectedAssistantId = 0;
+
         public GothicPersonalAssistant()
         {
             InitializeComponent();
+            var commands = JsonConvert.DeserializeObject<CommandConfig>(File.ReadAllText(@"G:\Projekty\PersonalAssistant\GothicAssistant\Commands.json"));
+            var commandList = SpeechRecognizer.Service.SpeechRecognizer.CreateCommandList(commands.Command);
 
-            recognizer.SetInputToDefaultAudioDevice();
-            recognizer.LoadGrammarAsync(new Grammar(new GrammarBuilder(new Choices(File.ReadAllLines(@"DefaultCommands.txt")))));
-            recognizer.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(DefaultSpeechRecognized);
-            recognizer.SpeechDetected += new EventHandler<SpeechDetectedEventArgs>(RecognizerSpeechRecognized);
-            recognizer.RecognizeAsync(RecognizeMode.Multiple);
-
-            listener.SetInputToDefaultAudioDevice();
-            listener.LoadGrammarAsync(new Grammar(new GrammarBuilder(new Choices(File.ReadAllLines(@"DefaultCommands.txt")))));
-            listener.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(ListenerSpeechRecognize);
-            listener.RecognizeAsync(RecognizeMode.Multiple);
+            SpeechRecognizer.Service.SpeechRecognizer.CreateNewSynthesizer(commandList, recognizer, Bezi, listener, DefaultSpeechRecognized, RecognizerSpeechRecognized, ListenerSpeechRecognize);
 
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
@@ -50,39 +36,92 @@ namespace GothicPersonalAssistant
             Bezi.SpeakAsync("Bezi");
         }
 
-        private void DefaultSpeechRecognized(object sender, SpeechRecognizedEventArgs e)
+        public void DefaultSpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            int ranNum;
-            var speech = e.Result.Text.ToString();
+            switch (SelectedAssistantId)
+            {
+                case (int)eAssistant.Diego:
+                    break;
+                case (int)eAssistant.Milten:
+                    break;
+                case (int)eAssistant.Xardas:
+                    break;
+                case (int)eAssistant.Gorn:
+                    break;
+                case (int)eAssistant.Lester:
+                    break;
+            }
 
-            if (speech == "Hello")
-            {
-                Bezi.SpeakAsync("Hello, I am here");
-            }
-            else if (speech == "Quiet")
-            {
-                Bezi.SpeakAsyncCancelAll();
-                ranNum = rnd.Next(1, 2);
-                if (ranNum == 1)
-                {
-                    Bezi.SpeakAsync("Yes sir");
-                }
-        
-                if (ranNum == 2)
-                {
-                    Bezi.SpeakAsync("I am sorry");
-                }
-            }
-            else if (speech == "Stop")
-            {
-                Bezi.SpeakAsync("If you need me just ask");
-                recognizer.RecognizeAsyncCancel();
-                listener.RecognizeAsync(RecognizeMode.Multiple);
-            }
-            else
-            {
-                Bezi.SpeakAsync("Ni pani maju!");
-            }
+        //    int ranNum;
+        //    var speech = e.Result.Text.ToString();
+
+        //    if (speech == "Hello")
+        //    {
+        //        Bezi.SpeakAsync("Czy to z przodu głowy to twarz czy dupa");
+        //    }
+        //    else if (speech == "Bezi")
+        //    {
+        //        Bezi.SpeakAsync("Czego!");
+        //    }
+        //    else if (speech == "Quiet")
+        //    {
+        //        Bezi.SpeakAsyncCancelAll();
+        //        ranNum = rnd.Next(1, 2);
+        //        if (ranNum == 1)
+        //        {
+        //            Bezi.SpeakAsync("Yes sir");
+        //        }
+
+        //        if (ranNum == 2)
+        //        {
+        //            Bezi.SpeakAsync("I am sorry");
+        //        }
+        //    }
+        //    //else if (speech == "Stop")
+        //    //{
+        //    //    Bezi.SpeakAsync("If you need me just ask");
+        //    //    recognizer.RecognizeAsyncCancel();
+        //    //    listener.RecognizeAsync(RecognizeMode.Multiple);
+        //    //}
+        //    else if (speech == "Pokaż mi swoje towary")
+        //    {
+        //        Bezi.SpeakAsync("Pewnie, zobacz sobie");
+        //        Process.Start("chrome.exe", "http://www.allegro.pl");
+        //    }
+        //    else if (speech == "Piotrek to fajny chłopak")
+        //    {
+        //        Bezi.SpeakAsync("Gówno prawda, Piotrek to frajer!");
+        //    }
+        //    else if (speech == "Pokaż")
+        //    {
+        //        Bezi.SpeakAsync("Pokaż mi swoje towary. Tak, znam to");
+        //        Process.Start("chrome.exe", "http://www.allegro.pl");
+        //    }
+        //    else if (speech == "Napiłbym sie piwa")
+        //    {
+        //        Bezi.SpeakAsync("Dostępne bary w okolicy");
+        //        Process.Start("chrome.exe", "https://www.google.com/maps/search/bar+Location");
+        //    }
+        //    else if (speech == "Mój komputer")
+        //    {
+        //        Bezi.SpeakAsync("otwieram");
+        //        Process.Start("explorer.exe");
+        //    }
+        //    else if (speech == "Chce sie zabawić" || speech == "Szukam kobiety")
+        //    {
+        //        Bezi.SpeakAsync("A, witaj przystojniaku");
+        //        Process.Start("chrome.exe", "http://www.roksa.pl");
+        //    }
+        //    else if (speech == "Lodówka jest pusta")
+        //    {
+        //        Bezi.SpeakAsync("Najelpsze promocje dla polskiej cebuli");
+        //        Process.Start("chrome.exe", "https://www.gazetkipromocyjne.net/");
+        //    }
+        //    else
+        //    {
+        //        Bezi.SpeakAsync("Ni pani maju!");
+        //    }
+
         }
 
         private void RecognizerSpeechRecognized(object sender, SpeechDetectedEventArgs e)
@@ -114,6 +153,34 @@ namespace GothicPersonalAssistant
                 dispatcherTimer.Stop();
                 listener.RecognizeAsync(RecognizeMode.Multiple);
                 RecTimeout = 0;
+            }
+        }
+
+        private void SelectAssistant_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedAssistantId = SelectAssistant.SelectedIndex;
+            switch (SelectedAssistantId)
+            {
+                case (int)eAssistant.Diego:
+                    SoundService.PlaySound(@"Sounds/Diego/INFO_DIEGO_GAMESTART_11_00.WAV");
+                    //AssistantIcon.Source = new BitmapImage(new Uri(@"G:\Projekty\PersonalAssistant\GothicAssistant\Images\Diego.png", UriKind.Relative));
+                    break;
+                case (int)eAssistant.Milten:
+                    SoundService.PlaySound(@"Sounds/Milten/DIA_MILTENOW_HELLO_03_00.WAV");
+                    AssistantIcon.Source = new BitmapImage(new Uri(@"G:\Projekty\PersonalAssistant\GothicAssistant\Images\Milten.png"));
+                    break;
+                case (int)eAssistant.Xardas:
+                    SoundService.PlaySound(@"Sounds/Xardas/INFO_XARDAS_DISTURB_14_01.WAV");
+                    AssistantIcon.Source = new BitmapImage(new Uri(@"Images\Xardas.png"));
+                    break;
+                case (int)eAssistant.Gorn:
+                    SoundService.PlaySound(@"Sounds/Gorn/DIA_GORN_FIRST_09_02.WAV");
+                    AssistantIcon.Source = new BitmapImage(new Uri(@"Images\Gorn.png"));
+                    break;
+                case (int)eAssistant.Lester:
+                    SoundService.PlaySound(@"Sounds/Lester/DIA_LESTER_HALLO_05_01.WAV");
+                    AssistantIcon.Source = new BitmapImage(new Uri(@"Images\Lester.png"));
+                    break;
             }
         }
     }

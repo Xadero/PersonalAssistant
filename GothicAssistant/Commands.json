@@ -1,0 +1,16 @@
+{
+  "Command": [
+    {
+      "AssistantId": 0,
+      "CommandText": "Hello",
+      "ActionType": "Sound",
+      "Action": "INFO_DIEGO_GAMESTART_11_00"
+    },
+    {
+      "AssistantId": 0,
+      "CommandText": "Jestem",
+      "ActionType": "Sound",
+      "Action": "INFO_DIEGO_GAMESTART_11_00"
+    }
+  ]
+}

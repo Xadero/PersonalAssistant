@@ -40,6 +40,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\Microsoft SDKs\Speech\v11.0\Assembly\Microsoft.Speech.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Speech" />
@@ -61,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Resource Include="Diego.png" />
     <Page Include="ClassicPersonalAssistant.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -80,7 +84,9 @@
     <Compile Include="ClassicPersonalAssistant.xaml.cs">
       <DependentUpon>ClassicPersonalAssistant.xaml</DependentUpon>
     </Compile>
-    <Content Include="DefaultCommands.txt" />
+    <Content Include="DefaultCommands.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Compile Include="GothicPersonalAssistant.xaml.cs">
       <DependentUpon>GothicPersonalAssistant.xaml</DependentUpon>
     </Compile>
@@ -107,6 +113,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -125,6 +132,16 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GothicAssistant\GothicAssistant.csproj">
+      <Project>{bc7c887f-c122-4dbe-b627-5c79bf9c65c4}</Project>
+      <Name>GothicAssistant</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SpeechRecognizer.Service\SpeechRecognizer.Service.csproj">
+      <Project>{fda032bf-2206-4356-99f9-55425f9bd725}</Project>
+      <Name>SpeechRecognizer.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
