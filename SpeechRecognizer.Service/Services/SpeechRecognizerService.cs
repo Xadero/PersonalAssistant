@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
-using System.Text;
+using PersonalAssistant.Service.Interfaces;
 
-namespace SpeechRecognizer.Service
+namespace PersonalAssistant.Service.Services
 {
-    public class SpeechRecognizer
+    public class SpeechRecognizerService : ISpeechRecognizerService
     {
-        public static void CreateNewSynthesizer(string[] commandList, SpeechRecognitionEngine recognizer, SpeechSynthesizer sythesizer, SpeechRecognitionEngine listener, EventHandler<SpeechRecognizedEventArgs> DefaultSpeechRecognized, EventHandler<SpeechDetectedEventArgs> RecognizerSpeechRecognized, EventHandler<SpeechRecognizedEventArgs> ListenerSpeechRecognize)
+        public void CreateNewSynthesizer(string[] commandList, SpeechRecognitionEngine recognizer, SpeechSynthesizer sythesizer, SpeechRecognitionEngine listener, EventHandler<SpeechRecognizedEventArgs> DefaultSpeechRecognized, EventHandler<SpeechDetectedEventArgs> RecognizerSpeechRecognized, EventHandler<SpeechRecognizedEventArgs> ListenerSpeechRecognize)
         {
-
             recognizer.SetInputToDefaultAudioDevice();
             recognizer.LoadGrammarAsync(new Grammar(new GrammarBuilder(new Choices(commandList))));
             recognizer.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(DefaultSpeechRecognized);
@@ -25,7 +22,7 @@ namespace SpeechRecognizer.Service
             listener.RecognizeAsync(RecognizeMode.Multiple);
         }
 
-        public static string[] CreateCommandList(List<Command> commands)
+        public string[] CreateCommandList(List<Command> commands)
         {
             var commandList = new List<string>();
 

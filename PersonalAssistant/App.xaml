@@ -1,9 +1,9 @@
 ﻿<Application x:Class="PersonalAssistant.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:GothicPersonalAssistant"
-             StartupUri="MainWindow.xaml">
+             xmlns:local="clr-namespace:PersonalAssistant"
+             Startup="OnStartup">
     <Application.Resources>
-         
+
     </Application.Resources>
 </Application>

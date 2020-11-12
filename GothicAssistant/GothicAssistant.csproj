@@ -52,7 +52,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assistant.config" />
     <Content Include="Commands.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -105,9 +104,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SpeechRecognizer.Service\SpeechRecognizer.Service.csproj">
+    <ProjectReference Include="..\SpeechRecognizer.Service\PersonalAssistant.Service.csproj">
       <Project>{FDA032BF-2206-4356-99F9-55425F9BD725}</Project>
-      <Name>SpeechRecognizer.Service</Name>
+      <Name>PersonalAssistant.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

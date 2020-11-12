@@ -47,12 +47,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandConfig.cs" />
-    <Compile Include="SoundService.cs" />
-    <Compile Include="SpeechRecognizer.cs" />
+    <Compile Include="Interfaces\ISoundService.cs" />
+    <Compile Include="Interfaces\ISpeechRecognizerService.cs" />
+    <Compile Include="Services\SoundService.cs" />
+    <Compile Include="Services\SpeechRecognizerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

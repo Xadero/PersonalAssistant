@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SpeechRecognizer.Service
+namespace PersonalAssistant.Service
 {
     public class Command
     {

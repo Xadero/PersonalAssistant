@@ -1,8 +1,8 @@
-﻿using SpeechRecognizer.Service;
+﻿using PersonalAssistant.Service;
+using PersonalAssistant.Service.Interfaces;
 using System.Collections.Generic;
-using System.Speech.Synthesis;
 
-namespace GothicAssistant
+namespace PersonalAssistant.GothicAssistant
 {
     public class Recognizer
     {
@@ -17,7 +17,7 @@ namespace GothicAssistant
             {
                 if (command.CommandText == text)
                 {
-                    _soundService.PlaySound(@"Sounds/Diego/" + command.Action);
+                    _soundService.PlaySound(@"GothicAssistant/Sounds/Diego/" + command.Action);
                 }
             }
         }
@@ -28,7 +28,7 @@ namespace GothicAssistant
             {
                 if (command.CommandText == text)
                 {
-                    _soundService.PlaySound(@"Sounds/Gorn/" + command.Action);
+                    _soundService.PlaySound(@"GothicAssistant/Sounds/Gorn/" + command.Action);
                 }
             }
         }
@@ -39,7 +39,7 @@ namespace GothicAssistant
             {
                 if (command.CommandText == text)
                 {
-                    _soundService.PlaySound(@"Sounds/Xardas/" + command.Action);
+                    _soundService.PlaySound(@"GothicAssistant/Sounds/Xardas/" + command.Action);
                 }
             }
         }
@@ -50,7 +50,7 @@ namespace GothicAssistant
             {
                 if (command.CommandText == text)
                 {
-                    _soundService.PlaySound(@"Sounds/Milten/" + command.Action);
+                    _soundService.PlaySound(@"GothicAssistant/Sounds/Milten/" + command.Action);
                 }
             }
         }
@@ -61,7 +61,7 @@ namespace GothicAssistant
             {
                 if (command.CommandText == text)
                 {
-                    _soundService.PlaySound(@"Sounds/Lester/" + command.Action);
+                    _soundService.PlaySound(@"GothicAssistant/Sounds/Lester/" + command.Action);
                 }
             }
         }
