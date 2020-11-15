@@ -1,0 +1,39 @@
+{
+  "Command": [
+    {
+      "CommandText": "Kim jesteœ",
+      "ActionTypeId": 1,
+      "Action": "",
+      "Answer": "ŸdŸb³o",
+      "Editable": false
+    },
+    {
+      "CommandText": "Sara poka¿ komendy",
+      "ActionTypeId": 0,
+      "Action": "",
+      "Answer": "Uruchamiam formularz",
+      "Editable": false
+    },
+    {
+      "CommandText": "Sara, dodaj komendê",
+      "ActionTypeId": 0,
+      "Action": "",
+      "Answer": "Uruchamiam formularz",
+      "Editable": false
+    },
+    {
+      "CommandText": "Sara, YouTube",
+      "ActionTypeId": 1,
+      "Action": "https://www.youtube.com/watch?v=r6zIGXun57U&ab_channel=LeagueofLegends",
+      "Answer": "Uruchamiam youtube",
+      "Editable": true
+    },
+    {
+      "CommandText": "œlad",
+      "ActionTypeId": 1,
+      "Action": "",
+      "Answer": "stop",
+      "Editable": false
+    }
+  ]
+}

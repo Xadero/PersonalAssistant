@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GothicAssistant")]
+[assembly: AssemblyTitle("PersonalAssistant.Common")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("GothicAssistant")]
+[assembly: AssemblyProduct("PersonalAssistant.Common")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("bc7c887f-c122-4dbe-b627-5c79bf9c65c4")]
+[assembly: Guid("93595c26-5868-425e-b86a-5a765d777c44")]
 
 // Version information for an assembly consists of the following four values:
 //

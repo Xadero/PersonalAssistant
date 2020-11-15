@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
+using Newtonsoft.Json;
+using PersonalAssistant.Common;
 using PersonalAssistant.Service.Interfaces;
 
 namespace PersonalAssistant.Service.Services
@@ -22,16 +25,20 @@ namespace PersonalAssistant.Service.Services
             listener.RecognizeAsync(RecognizeMode.Multiple);
         }
 
-        public string[] CreateCommandList(List<Command> commands)
+        public void ExecuteRecognizedAction(SpeechSynthesizer Sara, List<Command> commands, string text)
         {
-            var commandList = new List<string>();
-
             foreach (var command in commands)
             {
-                commandList.Add(command.CommandText);
+                if (command.CommandText == text)
+                {
+                    Sara.SpeakAsync(command.Answer);
+                }
             }
+        }
 
-            return commandList.ToArray();
+        public void ExecuteRecognizedAction(SpeechSynthesizer Sara, Command command)
+        {
+            Sara.SpeakAsync(command.Answer);
         }
     }
 }

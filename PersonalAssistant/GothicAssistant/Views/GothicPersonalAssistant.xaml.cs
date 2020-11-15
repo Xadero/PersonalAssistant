@@ -10,8 +10,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using System.Linq;
 using PersonalAssistant.GothicAssistant;
-using PersonalAssistant.Service;
 using PersonalAssistant.Service.Interfaces;
+using PersonalAssistant.Common;
 
 namespace PersonalAssistant
 {
@@ -35,8 +35,7 @@ namespace PersonalAssistant
             InitializeComponent();
             SetAssistantIcon(SelectedAssistantId);
             commands = JsonConvert.DeserializeObject<CommandConfig>(File.ReadAllText(@"GothicAssistant/Commands.json"));
-            var commandList = speechRecognizerService.CreateCommandList(commands.Command);
-            speechRecognizerService.CreateNewSynthesizer(commandList, recognizer, Bezi, listener, DefaultSpeechRecognized, RecognizerSpeechRecognized, ListenerSpeechRecognize);
+            speechRecognizerService.CreateNewSynthesizer(commands.Command.Select(x => x.CommandText).ToArray(), recognizer, Bezi, listener, DefaultSpeechRecognized, RecognizerSpeechRecognized, ListenerSpeechRecognize);
 
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
@@ -46,24 +45,7 @@ namespace PersonalAssistant
         public void DefaultSpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             var recognizer = new Recognizer(_soundService);
-            switch (SelectedAssistantId)
-            {
-                case (int)eAssistant.Diego:
-                    recognizer.DiegoRecognizer(commands.Command.Where(x => x.AssistantId == 0).ToList(), e.Result.Text);
-                    break;
-                case (int)eAssistant.Milten:
-                    recognizer.MiltenRecognizer(commands.Command.Where(x => x.AssistantId == 1).ToList(), e.Result.Text);
-                    break;
-                case (int)eAssistant.Xardas:
-                    recognizer.XardasRecognizer(commands.Command.Where(x => x.AssistantId == 2).ToList(), e.Result.Text);
-                    break;
-                case (int)eAssistant.Gorn:
-                    recognizer.GornRecognizer(commands.Command.Where(x => x.AssistantId == 3).ToList(), e.Result.Text);
-                    break;
-                case (int)eAssistant.Lester:
-                    recognizer.LesterRecognizer(commands.Command.Where(x => x.AssistantId == 4).ToList(), e.Result.Text);
-                    break;
-            }
+            recognizer.ExecuteRecognizedAction(commands.Command.Where(x => x.AssistantId == 0).ToList(), e.Result.Text, SelectedAssistantId);
         }
 
         private void RecognizerSpeechRecognized(object sender, SpeechDetectedEventArgs e)

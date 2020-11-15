@@ -30,7 +30,7 @@ namespace PersonalAssistant
             }
             else
             {
-                var classicAssistant = new ClassicPersonalAssistant();
+                var classicAssistant = new ClassicPersonalAssistant(_speechRecognizerService);
                 classicAssistant.Show();
                 this.Hide();
             }

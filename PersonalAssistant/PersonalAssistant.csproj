@@ -79,7 +79,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="ClassicAssistant\AddNewCommand.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ClassicAssistant\ClassicPersonalAssistant.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClassicAssistant\CommandManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -95,10 +103,26 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ClassicAssistant\AddNewCommand.xaml.cs">
+      <DependentUpon>AddNewCommand.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClassicAssistant\ClassicAssistantResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClassicAssistantResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ClassicAssistant\ClassicPersonalAssistant.xaml.cs">
       <DependentUpon>ClassicPersonalAssistant.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ClassicAssistant\CommandManagement.xaml.cs">
+      <DependentUpon>CommandManagement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GothicAssistant\eAssistant.cs" />
+    <Compile Include="GothicAssistant\GothicAssistantResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GothicAssistantResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="GothicAssistant\Recognizer.cs" />
     <Compile Include="GothicAssistant\Views\GothicPersonalAssistant.xaml.cs">
       <DependentUpon>GothicPersonalAssistant.xaml</DependentUpon>
@@ -122,11 +146,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="ClassicAssistant\ClassicAssistantResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ClassicAssistantResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GothicAssistant\GothicAssistantResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GothicAssistantResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Content Include="GothicAssistant\Commands.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ClassicAssistant\Commands.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
@@ -150,6 +185,10 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PersonalAssistant.Common\PersonalAssistant.Common.csproj">
+      <Project>{93595c26-5868-425e-b86a-5a765d777c44}</Project>
+      <Name>PersonalAssistant.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SpeechRecognizer.Service\PersonalAssistant.Service.csproj">
       <Project>{fda032bf-2206-4356-99f9-55425f9bd725}</Project>
       <Name>PersonalAssistant.Service</Name>
