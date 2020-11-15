@@ -1,21 +1,21 @@
-{
+Ôªø{
   "Command": [
     {
-      "CommandText": "Kim jesteú",
+      "CommandText": "Kim jeste≈õ",
       "ActionTypeId": 1,
       "Action": "",
-      "Answer": "üdüb≥o",
+      "Answer": "≈∫d≈∫b≈Ço",
       "Editable": false
     },
     {
-      "CommandText": "Sara pokaø komendy",
+      "CommandText": "Sara poka≈º komendy",
       "ActionTypeId": 0,
       "Action": "",
       "Answer": "Uruchamiam formularz",
       "Editable": false
     },
     {
-      "CommandText": "Sara, dodaj komendÍ",
+      "CommandText": "Sara, dodaj komendƒô",
       "ActionTypeId": 0,
       "Action": "",
       "Answer": "Uruchamiam formularz",
@@ -29,7 +29,7 @@
       "Editable": true
     },
     {
-      "CommandText": "úlad",
+      "CommandText": "≈õlad",
       "ActionTypeId": 1,
       "Action": "",
       "Answer": "stop",
