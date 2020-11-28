@@ -59,5 +59,41 @@ namespace PersonalAssistant.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sara, dodaj komendę.
+        /// </summary>
+        internal static string AddNewCommand {
+            get {
+                return ResourceManager.GetString("AddNewCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formularz jest już uruchomiony.
+        /// </summary>
+        internal static string FormIsAlreadyOpen {
+            get {
+                return ResourceManager.GetString("FormIsAlreadyOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cześć, jestem Sara i jestem twoim osobistym asystentem.
+        /// </summary>
+        internal static string SaraIntroduce {
+            get {
+                return ResourceManager.GetString("SaraIntroduce", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sara, pokaż komendy.
+        /// </summary>
+        internal static string ShowCommands {
+            get {
+                return ResourceManager.GetString("ShowCommands", resourceCulture);
+            }
+        }
     }
 }

@@ -8,7 +8,7 @@
       "Editable": false
     },
     {
-      "CommandText": "Sara pokaż komendy",
+      "CommandText": "Sara, pokaż komendy",
       "ActionTypeId": 0,
       "Action": "",
       "Answer": "Uruchamiam formularz",

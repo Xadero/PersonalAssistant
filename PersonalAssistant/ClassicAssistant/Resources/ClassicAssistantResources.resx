@@ -120,12 +120,6 @@
   <data name="AddNewCommand" xml:space="preserve">
     <value>Sara, dodaj komendę</value>
   </data>
-  <data name="FormIsAlreadyOpen" xml:space="preserve">
-    <value>Formularz jest już uruchomiony</value>
-  </data>
-  <data name="SaraIntroduce" xml:space="preserve">
-    <value>Cześć, jestem Sara i jestem twoim osobistym asystentem</value>
-  </data>
   <data name="ShowCommands" xml:space="preserve">
     <value>Sara, pokaż komendy</value>
   </data>

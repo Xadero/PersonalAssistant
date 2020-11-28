@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using PersonalAssistant.ClassicAssistant;
 using PersonalAssistant.Common;
 using PersonalAssistant.Service;
@@ -33,19 +33,43 @@ namespace PersonalAssistant
             _speechRecognizerService = speechRecognizerService;
             InitializeComponent();
             commands = JsonConvert.DeserializeObject<CommandConfig>(File.ReadAllText(@"ClassicAssistant/Commands.json"), new JsonSerializerSettings { Culture = new System.Globalization.CultureInfo("pl-pl") });
-            var c = AssistantHelper.CreateCommandList(commands.Command);
             _speechRecognizerService.CreateNewSynthesizer(commands.Command.Select(x => x.CommandText).ToArray(), recognizer, Sara, listener, DefaultSpeechRecognized, RecognizerSpeechRecognized, ListenerSpeechRecognize);
 
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             dispatcherTimer.Start();
-            Sara.SpeakAsync("Cześć jestem Sara i jestem twoim osobistym asystentem");
+            Sara.SpeakAsync(Properties.Resources.SaraIntroduce);
         }
 
         public void DefaultSpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             var recognizedCommand = AssistantHelper.GetRecognizedCommand(commands.Command, e.Result.Text);
-            _speechRecognizerService.ExecuteRecognizedAction(Sara, recognizedCommand);
+            if (recognizedCommand.CommandText == Properties.Resources.AddNewCommand)
+            {
+                if (!IsWindowOpen<AddNewCommand>())
+                {
+                    var addNewCommand = new AddNewCommand();
+                    addNewCommand.Show();
+                    Sara.SpeakAsync(recognizedCommand.Answer);
+                }
+                else
+                    Sara.SpeakAsync(Properties.Resources.FormIsAlreadyOpen);
+            }
+            else if (recognizedCommand.CommandText == Properties.Resources.ShowCommands)
+            {
+                if (!IsWindowOpen<CommandManagement>())
+                {
+                    var commandManagement = new CommandManagement();
+                    commandManagement.Show();
+                    Sara.SpeakAsync(recognizedCommand.Answer);
+                }
+                else
+                    Sara.SpeakAsync(Properties.Resources.FormIsAlreadyOpen);
+            }
+            else
+            {
+                _speechRecognizerService.ExecuteRecognizedAction(Sara, recognizedCommand);
+            }
         }
 
         private void RecognizerSpeechRecognized(object sender, SpeechDetectedEventArgs e)
@@ -57,7 +81,7 @@ namespace PersonalAssistant
         {
             var x = e.Result.Text;
 
-            if (x == "ślad")
+            if (x == "Ĺ›lad")
             {
                 listener.RecognizeAsyncCancel();
                 Sara.SpeakAsync("What's up");
@@ -77,6 +101,11 @@ namespace PersonalAssistant
                 listener.RecognizeAsync(RecognizeMode.Multiple);
                 RecTimeout = 0;
             }
+        }
+
+        public static bool IsWindowOpen<T>(string name = "") where T : Window
+        {
+            return string.IsNullOrEmpty(name) ? Application.Current.Windows.OfType<T>().Any() : Application.Current.Windows.OfType<T>().Any(w => w.Name.Equals(name));
         }
     }
 }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PersonalAssistant.ClassicAssistant {
+namespace PersonalAssistant.ClassicAssistant.Resources {
     using System;
     
     
@@ -22,7 +22,7 @@ namespace PersonalAssistant.ClassicAssistant {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ClassicAssistantResources {
+    public class ClassicAssistantResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,10 +36,10 @@ namespace PersonalAssistant.ClassicAssistant {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PersonalAssistant.ClassicAssistant.ClassicAssistantResources", typeof(ClassicAssistantResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PersonalAssistant.ClassicAssistant.Resources.ClassicAssistantResources", typeof(ClassicAssistantResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,12 +51,30 @@ namespace PersonalAssistant.ClassicAssistant {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sara, dodaj komendę.
+        /// </summary>
+        public static string AddNewCommand {
+            get {
+                return ResourceManager.GetString("AddNewCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sara, pokaż komendy.
+        /// </summary>
+        public static string ShowCommands {
+            get {
+                return ResourceManager.GetString("ShowCommands", resourceCulture);
             }
         }
     }

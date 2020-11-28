@@ -106,7 +106,7 @@
     <Compile Include="ClassicAssistant\AddNewCommand.xaml.cs">
       <DependentUpon>AddNewCommand.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ClassicAssistant\ClassicAssistantResources.Designer.cs">
+    <Compile Include="ClassicAssistant\Resources\ClassicAssistantResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ClassicAssistantResources.resx</DependentUpon>
@@ -146,8 +146,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="ClassicAssistant\ClassicAssistantResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+    <EmbeddedResource Include="ClassicAssistant\Resources\ClassicAssistantResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ClassicAssistantResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="GothicAssistant\GothicAssistantResources.resx">

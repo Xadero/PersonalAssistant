@@ -14,7 +14,7 @@ namespace PersonalAssistant.Common
             foreach (var command in commands)
             {
                 byte[] bytes = Encoding.ASCII.GetBytes(command.CommandText);
-                command.CommandText = Encoding.GetEncoding("Windows-1250").GetString(bytes);
+                command.CommandText = Encoding.GetEncoding("UTF-8").GetString(bytes);
                 commandList.Add(command.CommandText);
             }
 
