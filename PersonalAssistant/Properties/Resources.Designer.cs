@@ -61,6 +61,15 @@ namespace PersonalAssistant.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Akcja.
+        /// </summary>
+        internal static string Action {
+            get {
+                return ResourceManager.GetString("Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sara, dodaj komendę.
         /// </summary>
         internal static string AddNewCommand {
@@ -70,11 +79,38 @@ namespace PersonalAssistant.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ścieżka katalogu.
+        /// </summary>
+        internal static string DirectoryPath {
+            get {
+                return ResourceManager.GetString("DirectoryPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ścieżka pliku.
+        /// </summary>
+        internal static string FilePath {
+            get {
+                return ResourceManager.GetString("FilePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Formularz jest już uruchomiony.
         /// </summary>
         internal static string FormIsAlreadyOpen {
             get {
                 return ResourceManager.GetString("FormIsAlreadyOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ścieżka programu.
+        /// </summary>
+        internal static string ProgramPath {
+            get {
+                return ResourceManager.GetString("ProgramPath", resourceCulture);
             }
         }
         
@@ -93,6 +129,15 @@ namespace PersonalAssistant.Properties {
         internal static string ShowCommands {
             get {
                 return ResourceManager.GetString("ShowCommands", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adres strony.
+        /// </summary>
+        internal static string URLAddress {
+            get {
+                return ResourceManager.GetString("URLAddress", resourceCulture);
             }
         }
     }

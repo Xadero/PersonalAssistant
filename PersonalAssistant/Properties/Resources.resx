@@ -117,16 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Action" xml:space="preserve">
+    <value>Akcja</value>
+  </data>
   <data name="AddNewCommand" xml:space="preserve">
     <value>Sara, dodaj komendę</value>
   </data>
+  <data name="DirectoryPath" xml:space="preserve">
+    <value>Ścieżka katalogu</value>
+  </data>
+  <data name="FilePath" xml:space="preserve">
+    <value>Ścieżka pliku</value>
+  </data>
   <data name="FormIsAlreadyOpen" xml:space="preserve">
     <value>Formularz jest już uruchomiony</value>
+  </data>
+  <data name="ProgramPath" xml:space="preserve">
+    <value>Ścieżka programu</value>
   </data>
   <data name="SaraIntroduce" xml:space="preserve">
     <value>Cześć, jestem Sara i jestem twoim osobistym asystentem</value>
   </data>
   <data name="ShowCommands" xml:space="preserve">
     <value>Sara, pokaż komendy</value>
+  </data>
+  <data name="URLAddress" xml:space="preserve">
+    <value>Adres strony</value>
   </data>
 </root>
