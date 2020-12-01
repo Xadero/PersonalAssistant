@@ -79,6 +79,15 @@ namespace PersonalAssistant.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string CommndsFilePath {
+            get {
+                return ResourceManager.GetString("CommndsFilePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ścieżka katalogu.
         /// </summary>
         internal static string DirectoryPath {

@@ -22,6 +22,6 @@
         </ComboBox>
         <TextBox x:Name="actionTxt" HorizontalAlignment="Left" Height="23" Margin="130,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <Button x:Name="fileDialogBtn" Content="..." HorizontalAlignment="Left" Margin="255,114,0,0" VerticalAlignment="Top" Width="25" Click="FileDialog_Click" IsEnabled="False"/>
-        <Button x:Name="saveBtn" Content="Zapisz" HorizontalAlignment="Left" Margin="10,218,0,0" VerticalAlignment="Top" Width="270"/>
+        <Button x:Name="saveBtn" Content="Zapisz" HorizontalAlignment="Left" Margin="10,218,0,0" VerticalAlignment="Top" Width="270" Click="saveBtn_Click"/>
     </Grid>
 </Window>

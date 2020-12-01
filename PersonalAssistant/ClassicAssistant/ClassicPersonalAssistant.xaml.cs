@@ -1,15 +1,12 @@
 ﻿using Newtonsoft.Json;
 using PersonalAssistant.ClassicAssistant;
 using PersonalAssistant.Common;
-using PersonalAssistant.Service;
 using PersonalAssistant.Service.Interfaces;
 using System;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
-using System.Text;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -21,18 +18,22 @@ namespace PersonalAssistant
     public partial class ClassicPersonalAssistant : Window
     {
         ISpeechRecognizerService _speechRecognizerService;
-        SpeechRecognitionEngine recognizer = new SpeechRecognitionEngine();
+        IAssistantService _assistantService;
+        static SpeechRecognitionEngine recognizer = new SpeechRecognitionEngine();
         SpeechSynthesizer Sara = new SpeechSynthesizer();
         SpeechRecognitionEngine listener = new SpeechRecognitionEngine();
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
 
         int RecTimeout = 0;
-        CommandConfig commands = null;
-        public ClassicPersonalAssistant(ISpeechRecognizerService speechRecognizerService)
+        public static CommandConfig commands = null;
+
+        public ClassicPersonalAssistant() { }
+        public ClassicPersonalAssistant(ISpeechRecognizerService speechRecognizerService, IAssistantService assistantService)
         {
             _speechRecognizerService = speechRecognizerService;
+            _assistantService = assistantService;
             InitializeComponent();
-            commands = JsonConvert.DeserializeObject<CommandConfig>(File.ReadAllText(@"ClassicAssistant/Commands.json"), new JsonSerializerSettings { Culture = new System.Globalization.CultureInfo("pl-pl") });
+            UpdateCommandsList();
             _speechRecognizerService.CreateNewSynthesizer(commands.Command.Select(x => x.CommandText).ToArray(), recognizer, Sara, listener, DefaultSpeechRecognized, RecognizerSpeechRecognized, ListenerSpeechRecognize);
 
             dispatcherTimer.Tick += dispatcherTimer_Tick;
@@ -48,7 +49,7 @@ namespace PersonalAssistant
             {
                 if (!IsWindowOpen<AddNewCommand>())
                 {
-                    var addNewCommand = new AddNewCommand();
+                    var addNewCommand = new AddNewCommand(_assistantService);
                     addNewCommand.Show();
                     Sara.SpeakAsync(recognizedCommand.Answer);
                 }
@@ -81,11 +82,11 @@ namespace PersonalAssistant
         {
             var x = e.Result.Text;
 
-            if (x == "Ĺ›lad")
+            if (x == "ślad")
             {
-                listener.RecognizeAsyncCancel();
-                Sara.SpeakAsync("What's up");
-                recognizer.RecognizeAsync(RecognizeMode.Multiple);
+                //listener.RecognizeAsyncCancel();
+                //Sara.SpeakAsync("What's up");
+                //recognizer.RecognizeAsync(RecognizeMode.Multiple);
             }
         }
 
@@ -106,6 +107,12 @@ namespace PersonalAssistant
         public static bool IsWindowOpen<T>(string name = "") where T : Window
         {
             return string.IsNullOrEmpty(name) ? Application.Current.Windows.OfType<T>().Any() : Application.Current.Windows.OfType<T>().Any(w => w.Name.Equals(name));
+        }
+
+        public static void UpdateCommandsList()
+        {
+            commands = JsonConvert.DeserializeObject<CommandConfig>(File.ReadAllText(@"ClassicAssistant/Commands.json"), new JsonSerializerSettings { Culture = new System.Globalization.CultureInfo("pl-pl") });
+            recognizer.LoadGrammarAsync(new Grammar(new GrammarBuilder(new Choices(commands.Command.Select(x => x.CommandText).ToArray()))));
         }
     }
 }

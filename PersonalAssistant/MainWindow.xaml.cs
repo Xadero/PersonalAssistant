@@ -10,13 +10,15 @@ namespace PersonalAssistant
     {
         public readonly ISoundService _soundService;
         public readonly ISpeechRecognizerService _speechRecognizerService;
+        public readonly IAssistantService _assistantService;
         public static MainWindow AppWindow;
 
-        public MainWindow(ISoundService soundService, ISpeechRecognizerService speechRecognizerService)
+        public MainWindow(ISoundService soundService, ISpeechRecognizerService speechRecognizerService, IAssistantService assistantService)
         {
             AppWindow = this;
             _soundService = soundService;
             _speechRecognizerService = speechRecognizerService;
+            _assistantService = assistantService;
             InitializeComponent();
         }
 
@@ -30,7 +32,7 @@ namespace PersonalAssistant
             }
             else
             {
-                var classicAssistant = new ClassicPersonalAssistant(_speechRecognizerService);
+                var classicAssistant = new ClassicPersonalAssistant(_speechRecognizerService, _assistantService);
                 classicAssistant.Show();
                 this.Hide();
             }

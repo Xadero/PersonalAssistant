@@ -7,7 +7,7 @@
     <ProjectGuid>{FDA032BF-2206-4356-99F9-55425F9BD725}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SpeechRecognizer.Service</RootNamespace>
+    <RootNamespace>PersonalAssistant.Service</RootNamespace>
     <AssemblyName>SpeechRecognizer.Service</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -49,8 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IAssistantService.cs" />
     <Compile Include="Interfaces\ISoundService.cs" />
     <Compile Include="Interfaces\ISpeechRecognizerService.cs" />
+    <Compile Include="Services\AssistantService.cs" />
     <Compile Include="Services\SoundService.cs" />
     <Compile Include="Services\SpeechRecognizerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

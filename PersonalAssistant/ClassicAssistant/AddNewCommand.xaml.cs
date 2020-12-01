@@ -1,4 +1,7 @@
 ﻿using Microsoft.Win32;
+using PersonalAssistant.Common;
+using PersonalAssistant.Service.Interfaces;
+using System;
 using System.Windows;
 
 namespace PersonalAssistant.ClassicAssistant
@@ -8,8 +11,10 @@ namespace PersonalAssistant.ClassicAssistant
     /// </summary>
     public partial class AddNewCommand : Window
     {
-        public AddNewCommand()
+        private readonly IAssistantService _assistantService;
+        public AddNewCommand(IAssistantService assistantService)
         {
+            _assistantService = assistantService;
             InitializeComponent();
         }
 
@@ -20,7 +25,6 @@ namespace PersonalAssistant.ClassicAssistant
             {
                 actionTxt.Text = openFileDialog.FileName;
             }
-
         }
 
         private void actionTypeCb_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -60,6 +64,35 @@ namespace PersonalAssistant.ClassicAssistant
                     actionTxt.IsEnabled = true;
                     actionLbl.Content = Properties.Resources.DirectoryPath;
                     break;
+            }
+        }
+
+        private void saveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(commandTxt.Text) || string.IsNullOrEmpty(commandTxt.Text) || (actionTypeCb.SelectedIndex != 0 && string.IsNullOrEmpty(actionTxt.Text)))
+            {
+                MessageBox.Show("Należy uzupełnić wszystkie pola!", "BŁĄD", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            var newCommand = new Command
+            {
+                CommandText = "Sara, " + commandTxt.Text,
+                ActionTypeId = actionTypeCb.SelectedIndex,
+                Action = actionTxt.Text,
+                Answer = answerTxt.Text,
+                Editable = true
+            };
+
+            try
+            {
+                _assistantService.StoreCommand(newCommand, @"ClassicAssistant/Commands.json");
+                ClassicPersonalAssistant.UpdateCommandsList();
+                MessageBox.Show("Komenda została dodana", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Wystąpił błąd podczas zapisu danych: " + ex.Message, "BŁĄD", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

@@ -123,6 +123,9 @@
   <data name="AddNewCommand" xml:space="preserve">
     <value>Sara, dodaj komendę</value>
   </data>
+  <data name="CommndsFilePath" xml:space="preserve">
+    <value />
+  </data>
   <data name="DirectoryPath" xml:space="preserve">
     <value>Ścieżka katalogu</value>
   </data>

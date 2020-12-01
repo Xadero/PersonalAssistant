@@ -24,6 +24,7 @@ namespace PersonalAssistant
         {
             services.AddScoped<ISoundService, SoundService>();
             services.AddScoped<ISpeechRecognizerService, SpeechRecognizerService>();
+            services.AddScoped<IAssistantService, AssistantService>();
             services.AddSingleton<MainWindow>();
         }
 
