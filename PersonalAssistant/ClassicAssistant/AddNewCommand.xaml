@@ -5,23 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonalAssistant.ClassicAssistant"
         mc:Ignorable="d"
-        Title="AddNewCommand" Height="280" Width="300">
+        Title="Dodaj komendę" Height="370" Width="300">
     <Grid Margin="0,0,2,2" Background="LightGray">
-        <Label x:Name="commandLbl" Content="Komenda" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="115"/>
-        <Label x:Name="answerLbl" Content="Odpowiedź" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="115"/>
-        <Label x:Name="actionTypeLbl" Content="Typ akcji" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" Width="115"/>
-        <Label x:Name="actionLbl" Content="Akcja" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Width="115"/>
-        <TextBox x:Name="commandTxt" HorizontalAlignment="Left" Height="23" Margin="130,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="answerTxt" HorizontalAlignment="Left" Height="23" Margin="130,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="actionTypeCb" HorizontalAlignment="Left" Margin="130,114,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="actionTypeCb_SelectionChanged">
+        <Label x:Name="commandLbl" Content="Komenda" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top" Width="115" Height="45"/>
+        <Label x:Name="answerLbl" Content="Odpowiedź" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" Width="115" Height="45"/>
+        <Label x:Name="actionTypeLbl" Content="Typ akcji" HorizontalAlignment="Left" Margin="10,141,0,0" VerticalAlignment="Top" Width="115"/>
+        <Label x:Name="actionLbl" Content="Akcja" HorizontalAlignment="Left" Margin="10,187,0,0" VerticalAlignment="Top" Width="115" Height="50"/>
+        <TextBox x:Name="commandTxt" HorizontalAlignment="Left" Height="45" Margin="130,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="answerTxt" HorizontalAlignment="Left" Height="45" Margin="130,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="actionTypeCb" HorizontalAlignment="Left" Margin="130,141,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="actionTypeCb_SelectionChanged" Height="26">
             <ComboBoxItem x:Name="None" x:Uid="0" IsSelected="True">...</ComboBoxItem>
             <ComboBoxItem x:Name="OpenUrl" x:Uid="1">Otwórz stronę</ComboBoxItem>
             <ComboBoxItem x:Name="OpenFile" x:Uid="2">Otwórz plik</ComboBoxItem>
             <ComboBoxItem x:Name="RunProcess" x:Uid="3">Uruchom program</ComboBoxItem>
             <ComboBoxItem x:Name="OpenDirectory" x:Uid="4">Otwórz folder</ComboBoxItem>
         </ComboBox>
-        <TextBox x:Name="actionTxt" HorizontalAlignment="Left" Height="23" Margin="130,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-        <Button x:Name="fileDialogBtn" Content="..." HorizontalAlignment="Left" Margin="255,114,0,0" VerticalAlignment="Top" Width="25" Click="FileDialog_Click" IsEnabled="False"/>
-        <Button x:Name="saveBtn" Content="Zapisz" HorizontalAlignment="Left" Margin="10,218,0,0" VerticalAlignment="Top" Width="270" Click="saveBtn_Click"/>
+        <TextBox x:Name="actionTxt" HorizontalAlignment="Left" Height="50" Margin="130,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" RenderTransformOrigin="0.494,1.233"/>
+        <Button x:Name="fileDialogBtn" Content="..." HorizontalAlignment="Left" Margin="255,141,0,0" VerticalAlignment="Top" Width="25" Click="FileDialog_Click" IsEnabled="False" RenderTransformOrigin="0.634,1.668" Height="26"/>
+        <Button x:Name="saveBtn" Content="Zapisz" HorizontalAlignment="Left" Margin="10,302,0,0" VerticalAlignment="Top" Width="270" Click="saveBtn_Click"/>
+        <CheckBox x:Name="isConfirmation" Content="" HorizontalAlignment="Left" Margin="201,263,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.134,0.632"/>
+        <Label Content="Czy wymaganie potwierdzenie" HorizontalAlignment="Left" Margin="10,257,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.514,-0.775"/>
     </Grid>
 </Window>

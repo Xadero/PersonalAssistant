@@ -26,6 +26,7 @@ namespace PersonalAssistant
 
         int RecTimeout = 0;
         public static CommandConfig commands = null;
+        Command recognizedCommand = null;
 
         public ClassicPersonalAssistant() { }
         public ClassicPersonalAssistant(ISpeechRecognizerService speechRecognizerService, IAssistantService assistantService)
@@ -34,8 +35,7 @@ namespace PersonalAssistant
             _assistantService = assistantService;
             InitializeComponent();
             UpdateCommandsList();
-            _speechRecognizerService.CreateNewSynthesizer(commands.Command.Select(x => x.CommandText).ToArray(), recognizer, Sara, listener, DefaultSpeechRecognized, RecognizerSpeechRecognized, ListenerSpeechRecognize);
-
+            _speechRecognizerService.CreateNewSynthesizer(commands.Command.Where(x=>!x.IsConfimation).Select(x => x.CommandText).ToArray(), recognizer, Sara, listener, DefaultSpeechRecognized, RecognizerSpeechRecognized, ListenerSpeechRecognize);
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             dispatcherTimer.Start();
@@ -44,7 +44,8 @@ namespace PersonalAssistant
 
         public void DefaultSpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            var recognizedCommand = AssistantHelper.GetRecognizedCommand(commands.Command, e.Result.Text);
+            recognizedCommand = AssistantHelper.GetRecognizedCommand(commands.Command, e.Result.Text);
+
             if (recognizedCommand.CommandText == Properties.Resources.AddNewCommand)
             {
                 if (!IsWindowOpen<AddNewCommand>())
@@ -67,17 +68,35 @@ namespace PersonalAssistant
                 else
                     Sara.SpeakAsync(Properties.Resources.FormIsAlreadyOpen);
             }
-            else
+            else if (recognizedCommand.NeedsConfirmation)
             {
-                _speechRecognizerService.ExecuteRecognizedAction(Sara, recognizedCommand);
+                Sara.SpeakAsync("Czy wykonać tą operację");
+                recognizer.RecognizeAsyncStop();
+                listener.RecognizeAsyncStop();
+                recognizer = new SpeechRecognitionEngine();
+                _speechRecognizerService.CreateNewSynthesizer(commands.Command.Where(x => x.IsConfimation).Select(x => x.CommandText).ToArray(), recognizer, Sara, listener, ConfirmationSpeechRecognized, RecognizerSpeechRecognized, ListenerSpeechRecognize);
             }
+            else
+                _speechRecognizerService.ExecuteRecognizedAction(Sara, recognizedCommand);
         }
 
         private void RecognizerSpeechRecognized(object sender, SpeechDetectedEventArgs e)
         {
             RecTimeout = 0;
         }
+        private void ConfirmationSpeechRecognized(object sender, SpeechRecognizedEventArgs e)
+        {
+            if(e.Result.Text == "Tak")
+                _speechRecognizerService.ExecuteRecognizedAction(Sara, recognizedCommand);
+            else
+                Sara.SpeakAsync("Operacje anulowano");
 
+            recognizer.RecognizeAsyncStop();
+            listener.RecognizeAsyncStop();
+            recognizer = new SpeechRecognitionEngine();
+            _speechRecognizerService.CreateNewSynthesizer(commands.Command.Where(x => !x.IsConfimation).Select(x => x.CommandText).ToArray(), recognizer, Sara, listener, DefaultSpeechRecognized, RecognizerSpeechRecognized, ListenerSpeechRecognize);
+            RecTimeout = 0;
+        }
         private void ListenerSpeechRecognize(object sender, SpeechRecognizedEventArgs e)
         {
             var x = e.Result.Text;
@@ -112,7 +131,7 @@ namespace PersonalAssistant
         public static void UpdateCommandsList()
         {
             commands = JsonConvert.DeserializeObject<CommandConfig>(File.ReadAllText(@"ClassicAssistant/Commands.json"), new JsonSerializerSettings { Culture = new System.Globalization.CultureInfo("pl-pl") });
-            recognizer.LoadGrammarAsync(new Grammar(new GrammarBuilder(new Choices(commands.Command.Select(x => x.CommandText).ToArray()))));
+            recognizer.LoadGrammarAsync(new Grammar(new GrammarBuilder(new Choices(commands.Command.Where(x => !x.IsConfimation).Select(x => x.CommandText).ToArray()))));
         }
     }
 }

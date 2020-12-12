@@ -52,6 +52,11 @@
     <Compile Include="Interfaces\IAssistantService.cs" />
     <Compile Include="Interfaces\ISoundService.cs" />
     <Compile Include="Interfaces\ISpeechRecognizerService.cs" />
+    <Compile Include="Resources\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\AssistantService.cs" />
     <Compile Include="Services\SoundService.cs" />
     <Compile Include="Services\SpeechRecognizerService.cs" />
@@ -65,6 +70,12 @@
       <Project>{93595c26-5868-425e-b86a-5a765d777c44}</Project>
       <Name>PersonalAssistant.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

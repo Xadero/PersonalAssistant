@@ -26,6 +26,10 @@ namespace PersonalAssistant.Common
         public string Answer { get; set; }
 
         public bool Editable { get; set; }
+
+        public bool IsConfimation { get; set; }
+
+        public bool NeedsConfirmation { get; set; }
     }
 
     public class CommandConfig

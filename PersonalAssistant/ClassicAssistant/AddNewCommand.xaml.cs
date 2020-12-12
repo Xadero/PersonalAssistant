@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using PersonalAssistant.Common;
+using PersonalAssistant.Common.Enums;
 using PersonalAssistant.Service.Interfaces;
 using System;
 using System.Windows;
@@ -20,7 +21,8 @@ namespace PersonalAssistant.ClassicAssistant
 
         private void FileDialog_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            var openFileDialog = new OpenFileDialog();
+
             if (openFileDialog.ShowDialog().Value)
             {
                 actionTxt.Text = openFileDialog.FileName;
@@ -34,7 +36,7 @@ namespace PersonalAssistant.ClassicAssistant
 
             switch (actionTypeCb.SelectedIndex)
             {
-                case 0:
+                case (int)ActionType.None:
                     fileDialogBtn.IsEnabled = false;
                     actionTxt.Text = string.Empty;
                     actionTxt.IsEnabled = false;
@@ -81,7 +83,8 @@ namespace PersonalAssistant.ClassicAssistant
                 ActionTypeId = actionTypeCb.SelectedIndex,
                 Action = actionTxt.Text,
                 Answer = answerTxt.Text,
-                Editable = true
+                Editable = true,
+                IsConfimation = isConfirmation.IsChecked.Value
             };
 
             try

@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
-using Newtonsoft.Json;
 using PersonalAssistant.Common;
+using PersonalAssistant.Common.Enums;
 using PersonalAssistant.Service.Interfaces;
 
 namespace PersonalAssistant.Service.Services
@@ -25,20 +25,50 @@ namespace PersonalAssistant.Service.Services
             listener.RecognizeAsync(RecognizeMode.Multiple);
         }
 
-        public void ExecuteRecognizedAction(SpeechSynthesizer Sara, List<Command> commands, string text)
+        public void ExecuteRecognizedAction(SpeechSynthesizer Sara, Command command)
         {
-            foreach (var command in commands)
+            try
             {
-                if (command.CommandText == text)
+                switch (command.ActionTypeId)
                 {
-                    Sara.SpeakAsync(command.Answer);
+                    case (int)ActionType.OpenDirectory:
+                        ValidateDirectoryPath(command.Action);
+                        break;
+                    case (int)ActionType.OpenFile:
+                        ValidateFilePath(command.Action);
+                        break;
+                    case (int)ActionType.OpenUrl:
+                        ValidateUrl(command.Action);
+                        break;
                 }
+
+                Process.Start(command.Action);
+                Sara.SpeakAsync(command.Answer);
+            }
+            catch (InvalidDataException ex)
+            {
+                Sara.SpeakAsync(ex.Message);
             }
         }
 
-        public void ExecuteRecognizedAction(SpeechSynthesizer Sara, Command command)
+        private void ValidateUrl(string url)
         {
-            Sara.SpeakAsync(command.Answer);
+            Uri uriResult;
+            var result = Uri.TryCreate(url, UriKind.Absolute, out uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+            if (!result)
+                throw new InvalidDataException(Resources.Resource.ResourceManager.GetString("InvalidUrl"));
+        }
+
+        private void ValidateDirectoryPath(string directortyPath)
+        {
+            if (!Directory.Exists(directortyPath))
+                throw new InvalidDataException(Resources.Resource.ResourceManager.GetString("InvalidDirectoryPath"));
+        }
+
+        private void ValidateFilePath(string filepath) 
+        {
+            if (!File.Exists(filepath))
+              throw new InvalidDataException(Resources.Resource.ResourceManager.GetString("InvalidFilePath"));
         }
     }
 }

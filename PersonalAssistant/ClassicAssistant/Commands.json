@@ -3,21 +3,18 @@
     {
       "CommandText": "Kim jesteś",
       "ActionTypeId": 1,
-      "Action": "",
       "Answer": "źdźbło",
       "Editable": false
     },
     {
       "CommandText": "Sara, pokaż komendy",
       "ActionTypeId": 0,
-      "Action": "",
       "Answer": "Uruchamiam formularz",
       "Editable": false
     },
     {
       "CommandText": "Sara, dodaj komendę",
       "ActionTypeId": 0,
-      "Action": "",
       "Answer": "Uruchamiam formularz",
       "Editable": false
     },
@@ -29,11 +26,37 @@
       "Editable": true
     },
     {
-      "CommandText": "ślad",
-      "ActionTypeId": 1,
-      "Action": "",
-      "Answer": "stop",
-      "Editable": false
+      "CommandText": "Sara, Kalkulator",
+      "ActionTypeId": 3,
+      "Action": "calc",
+      "Answer": "Uruchamiam kalkulator",
+      "Editable": true
+    },
+    {
+      "CommandText": "Sara, folder",
+      "ActionTypeId": 4,
+      "Action": "F:\\pc",
+      "Answer": "Uruchamiam uruchamiam folder",
+      "Editable": true
+    },
+    {
+      "CommandText": "Sara, Exit",
+      "ActionTypeId": 0,
+      "Answer": "Do zobaczenia!",
+      "Editable": false,
+      "NeedsConfirmation": true
+    },
+    {
+      "CommandText": "Tak",
+      "ActionTypeId": 0,
+      "Editable": false,
+      "IsConfimation": true
+    },
+    {
+      "CommandText": "Nie",
+      "ActionTypeId": 0,
+      "Editable": false,
+      "IsConfimation": true
     }
   ]
 }
