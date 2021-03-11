@@ -84,7 +84,7 @@ namespace PersonalAssistant.ClassicAssistant
                 Action = actionTxt.Text,
                 Answer = answerTxt.Text,
                 Editable = true,
-                IsConfimation = isConfirmation.IsChecked.Value
+                NeedsConfirmation = isConfirmation.IsChecked.Value
             };
 
             try

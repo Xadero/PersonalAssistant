@@ -2,7 +2,7 @@
   "Command": [
     {
       "AssistantId": 0,
-      "CommandText": "Kim jesteœ",
+      "CommandText": "Kim jesteï¿½",
       "ActionTypeId": 1,
       "Action": "",
       "Answer": "GothicAssistant/Sounds/Diego/INFO_DIEGO_GAMESTART_11_00.WAV",

@@ -22,7 +22,7 @@ namespace PersonalAssistant.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace PersonalAssistant.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PersonalAssistant.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace PersonalAssistant.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace PersonalAssistant.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Akcja.
         /// </summary>
-        internal static string Action {
+        public static string Action {
             get {
                 return ResourceManager.GetString("Action", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace PersonalAssistant.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Sara, dodaj komendę.
         /// </summary>
-        internal static string AddNewCommand {
+        public static string AddNewCommand {
             get {
                 return ResourceManager.GetString("AddNewCommand", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace PersonalAssistant.Properties {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        internal static string CommndsFilePath {
+        public static string CommndsFilePath {
             get {
                 return ResourceManager.GetString("CommndsFilePath", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace PersonalAssistant.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Ścieżka katalogu.
         /// </summary>
-        internal static string DirectoryPath {
+        public static string DirectoryPath {
             get {
                 return ResourceManager.GetString("DirectoryPath", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace PersonalAssistant.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Ścieżka pliku.
         /// </summary>
-        internal static string FilePath {
+        public static string FilePath {
             get {
                 return ResourceManager.GetString("FilePath", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace PersonalAssistant.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Formularz jest już uruchomiony.
         /// </summary>
-        internal static string FormIsAlreadyOpen {
+        public static string FormIsAlreadyOpen {
             get {
                 return ResourceManager.GetString("FormIsAlreadyOpen", resourceCulture);
             }
@@ -117,16 +117,16 @@ namespace PersonalAssistant.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Ścieżka programu.
         /// </summary>
-        internal static string ProgramPath {
+        public static string ProgramPath {
             get {
                 return ResourceManager.GetString("ProgramPath", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cześć, jestem Sara i jestem twoim osobistym asystentem.
+        ///   Looks up a localized string similar to Cześć, jestem Sara. W czym mogę pomóc?.
         /// </summary>
-        internal static string SaraIntroduce {
+        public static string SaraIntroduce {
             get {
                 return ResourceManager.GetString("SaraIntroduce", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace PersonalAssistant.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Sara, pokaż komendy.
         /// </summary>
-        internal static string ShowCommands {
+        public static string ShowCommands {
             get {
                 return ResourceManager.GetString("ShowCommands", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace PersonalAssistant.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Adres strony.
         /// </summary>
-        internal static string URLAddress {
+        public static string URLAddress {
             get {
                 return ResourceManager.GetString("URLAddress", resourceCulture);
             }

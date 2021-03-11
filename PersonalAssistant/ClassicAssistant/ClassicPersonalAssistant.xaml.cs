@@ -9,6 +9,7 @@ using System.Speech.Recognition;
 using System.Speech.Synthesis;
 using System.Windows;
 using System.Windows.Threading;
+using Forms = System.Windows.Forms;
 
 namespace PersonalAssistant
 {
@@ -19,36 +20,43 @@ namespace PersonalAssistant
     {
         ISpeechRecognizerService _speechRecognizerService;
         IAssistantService _assistantService;
-        static SpeechRecognitionEngine recognizer = new SpeechRecognitionEngine();
+
         SpeechSynthesizer Sara = new SpeechSynthesizer();
+        static SpeechRecognitionEngine recognizer = new SpeechRecognitionEngine();
         SpeechRecognitionEngine listener = new SpeechRecognitionEngine();
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
 
-        int RecTimeout = 0;
         public static CommandConfig commands = null;
         Command recognizedCommand = null;
 
-        public ClassicPersonalAssistant() { }
+        Forms.NotifyIcon notifyIcon = null;
+        Forms.ContextMenu contextMenu = null;
+
+        int RecTimeout = 0;
+
         public ClassicPersonalAssistant(ISpeechRecognizerService speechRecognizerService, IAssistantService assistantService)
         {
             _speechRecognizerService = speechRecognizerService;
             _assistantService = assistantService;
+
             InitializeComponent();
             UpdateCommandsList();
-            _speechRecognizerService.CreateNewSynthesizer(commands.Command.Where(x=>!x.IsConfimation).Select(x => x.CommandText).ToArray(), recognizer, Sara, listener, DefaultSpeechRecognized, RecognizerSpeechRecognized, ListenerSpeechRecognize);
+            _speechRecognizerService.CreateNewSynthesizer(commands.Command.Where(x => !x.IsConfimation).Select(x => x.CommandText).ToArray(), recognizer, Sara, listener, DefaultSpeechRecognized, RecognizerSpeechRecognized, ListenerSpeechRecognize);
+
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             dispatcherTimer.Start();
             Sara.SpeakAsync(Properties.Resources.SaraIntroduce);
+            PrepareSystemTray();
+            contextMenu.MenuItems[0].Enabled = false;
         }
 
         public void DefaultSpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             recognizedCommand = AssistantHelper.GetRecognizedCommand(commands.Command, e.Result.Text);
-
             if (recognizedCommand.CommandText == Properties.Resources.AddNewCommand)
             {
-                if (!IsWindowOpen<AddNewCommand>())
+                if (!AssistantHelper.IsWindowOpen<AddNewCommand>())
                 {
                     var addNewCommand = new AddNewCommand(_assistantService);
                     addNewCommand.Show();
@@ -59,7 +67,7 @@ namespace PersonalAssistant
             }
             else if (recognizedCommand.CommandText == Properties.Resources.ShowCommands)
             {
-                if (!IsWindowOpen<CommandManagement>())
+                if (!AssistantHelper.IsWindowOpen<CommandManagement>())
                 {
                     var commandManagement = new CommandManagement();
                     commandManagement.Show();
@@ -67,6 +75,13 @@ namespace PersonalAssistant
                 }
                 else
                     Sara.SpeakAsync(Properties.Resources.FormIsAlreadyOpen);
+            }
+            else if (recognizedCommand.CommandText == "Sara, czas na przerwę")
+            {
+                Sara.SpeakAsync(recognizedCommand.Answer);
+                recognizer.RecognizeAsyncCancel();
+                contextMenu.MenuItems[0].Enabled = true;
+                contextMenu.MenuItems[1].Enabled = false;
             }
             else if (recognizedCommand.NeedsConfirmation)
             {
@@ -84,9 +99,10 @@ namespace PersonalAssistant
         {
             RecTimeout = 0;
         }
+
         private void ConfirmationSpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            if(e.Result.Text == "Tak")
+            if (e.Result.Text == "Tak")
                 _speechRecognizerService.ExecuteRecognizedAction(Sara, recognizedCommand);
             else
                 Sara.SpeakAsync("Operacje anulowano");
@@ -95,43 +111,91 @@ namespace PersonalAssistant
             listener.RecognizeAsyncStop();
             recognizer = new SpeechRecognitionEngine();
             _speechRecognizerService.CreateNewSynthesizer(commands.Command.Where(x => !x.IsConfimation).Select(x => x.CommandText).ToArray(), recognizer, Sara, listener, DefaultSpeechRecognized, RecognizerSpeechRecognized, ListenerSpeechRecognize);
-            RecTimeout = 0;
+            //RecTimeout = 0;
         }
         private void ListenerSpeechRecognize(object sender, SpeechRecognizedEventArgs e)
         {
-            var x = e.Result.Text;
-
-            if (x == "ślad")
+            if (e.Result.Text == "Sara, YouTube")
             {
-                //listener.RecognizeAsyncCancel();
-                //Sara.SpeakAsync("What's up");
-                //recognizer.RecognizeAsync(RecognizeMode.Multiple);
+                Sara.SpeakAsync("What's up");
+                recognizer.RecognizeAsync(RecognizeMode.Multiple);
+                contextMenu.MenuItems[0].Enabled = false;
+                contextMenu.MenuItems[1].Enabled = true;
+                dispatcherTimer.Start();
             }
         }
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
+            RecTimeout++;
             if (RecTimeout == 10)
             {
+                Sara.SpeakAsync("Powiedz, jeżeli będziesz mnie potrzebował");
                 recognizer.RecognizeAsyncCancel();
-            }
-            else if (RecTimeout == 11)
-            {
                 dispatcherTimer.Stop();
-                listener.RecognizeAsync(RecognizeMode.Multiple);
                 RecTimeout = 0;
             }
-        }
-
-        public static bool IsWindowOpen<T>(string name = "") where T : Window
-        {
-            return string.IsNullOrEmpty(name) ? Application.Current.Windows.OfType<T>().Any() : Application.Current.Windows.OfType<T>().Any(w => w.Name.Equals(name));
         }
 
         public static void UpdateCommandsList()
         {
             commands = JsonConvert.DeserializeObject<CommandConfig>(File.ReadAllText(@"ClassicAssistant/Commands.json"), new JsonSerializerSettings { Culture = new System.Globalization.CultureInfo("pl-pl") });
             recognizer.LoadGrammarAsync(new Grammar(new GrammarBuilder(new Choices(commands.Command.Where(x => !x.IsConfimation).Select(x => x.CommandText).ToArray()))));
+        }
+
+        private void PrepareSystemTray()
+        {
+            notifyIcon = new Forms.NotifyIcon();
+            notifyIcon.Icon = new System.Drawing.Icon(@"ClassicAssistant\avatar.ico");
+            notifyIcon.Visible = true;
+            contextMenu = new Forms.ContextMenu(new Forms.MenuItem[]
+            {
+                new Forms.MenuItem("Włącz Sarę", SysTrayEnableRecognizer),
+                new Forms.MenuItem("Wyłącz Sarę", SysTrayDisableRecognizer),
+                new Forms.MenuItem("Dodaj komendę", SysTrayAddCommand),
+                new Forms.MenuItem("Pokaż komendy", SysTrayShowCommands),
+                new Forms.MenuItem("Zamknij", SysTrayCloseApplication),
+            });
+
+            notifyIcon.ContextMenu = contextMenu;
+        }
+        private void SysTrayEnableRecognizer(object sender, EventArgs e)
+        {
+            contextMenu.MenuItems[0].Enabled = false;
+            contextMenu.MenuItems[1].Enabled = true;
+        }
+
+        private void SysTrayDisableRecognizer(object sender, EventArgs e)
+        {
+            contextMenu.MenuItems[0].Enabled = true;
+            contextMenu.MenuItems[1].Enabled = false;
+        }
+
+        private void SysTrayCloseApplication(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void SysTrayShowCommands(object sender, EventArgs e)
+        {
+            if (!AssistantHelper.IsWindowOpen<CommandManagement>())
+            {
+                var commandManagement = new CommandManagement();
+                commandManagement.Show();
+            }
+            else
+                MessageBox.Show(Properties.Resources.FormIsAlreadyOpen);
+        }
+
+        private void SysTrayAddCommand(object sender, EventArgs e)
+        {
+            if (!AssistantHelper.IsWindowOpen<AddNewCommand>())
+            {
+                var addNewCommand = new AddNewCommand(_assistantService);
+                addNewCommand.Show();
+            }
+            else
+                MessageBox.Show(Properties.Resources.FormIsAlreadyOpen, "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

@@ -42,7 +42,8 @@ namespace PersonalAssistant.Service.Services
                         break;
                 }
 
-                Process.Start(command.Action);
+                if(command.ActionTypeId != (int)ActionType.None)
+                    Process.Start(command.Action);
                 Sara.SpeakAsync(command.Answer);
             }
             catch (InvalidDataException ex)

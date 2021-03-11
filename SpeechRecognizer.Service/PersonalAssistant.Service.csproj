@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IAssistantService.cs" />
+    <Compile Include="Interfaces\INotificationService.cs" />
     <Compile Include="Interfaces\ISoundService.cs" />
     <Compile Include="Interfaces\ISpeechRecognizerService.cs" />
     <Compile Include="Resources\Resource.Designer.cs">
@@ -58,6 +59,7 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\AssistantService.cs" />
+    <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Services\SoundService.cs" />
     <Compile Include="Services\SpeechRecognizerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

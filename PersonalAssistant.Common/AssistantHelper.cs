@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace PersonalAssistant.Common
 {
@@ -30,6 +32,11 @@ namespace PersonalAssistant.Common
             }
 
             return new Command();
+        }
+
+        public static bool IsWindowOpen<T>(string name = "") where T : Window
+        {
+            return string.IsNullOrEmpty(name) ? Application.Current.Windows.OfType<T>().Any() : Application.Current.Windows.OfType<T>().Any(w => w.Name.Equals(name));
         }
     }
 }

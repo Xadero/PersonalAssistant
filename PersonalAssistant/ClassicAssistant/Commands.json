@@ -2,7 +2,7 @@
   "Command": [
     {
       "CommandText": "Kim jesteś",
-      "ActionTypeId": 1,
+      "ActionTypeId": 0,
       "Answer": "źdźbło",
       "Editable": false
     },
@@ -57,6 +57,12 @@
       "ActionTypeId": 0,
       "Editable": false,
       "IsConfimation": true
+    },
+    {
+      "CommandText": "Sara, czas na przerwę",
+      "ActionTypeId": 0,
+      "Answer": "Dobrze, zrobię sobie przerwę",
+      "Editable": false
     }
   ]
 }

@@ -139,7 +139,7 @@
     <value>Ścieżka programu</value>
   </data>
   <data name="SaraIntroduce" xml:space="preserve">
-    <value>Cześć, jestem Sara i jestem twoim osobistym asystentem</value>
+    <value>Cześć, jestem Sara. W czym mogę pomóc?</value>
   </data>
   <data name="ShowCommands" xml:space="preserve">
     <value>Sara, pokaż komendy</value>

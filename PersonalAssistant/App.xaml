@@ -4,6 +4,5 @@
              xmlns:local="clr-namespace:PersonalAssistant"
              Startup="OnStartup">
     <Application.Resources>
-
     </Application.Resources>
 </Application>
