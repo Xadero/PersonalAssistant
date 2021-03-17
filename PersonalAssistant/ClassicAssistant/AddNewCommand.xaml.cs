@@ -21,12 +21,20 @@ namespace PersonalAssistant.ClassicAssistant
 
         private void FileDialog_Click(object sender, RoutedEventArgs e)
         {
-            var openFileDialog = new OpenFileDialog();
-
-            if (openFileDialog.ShowDialog().Value)
+            if (actionTypeCb.SelectedIndex == (int)ActionType.OpenFile)
             {
-                actionTxt.Text = openFileDialog.FileName;
+                var openFileDialog = new OpenFileDialog();
+                actionTxt.Text = openFileDialog.ShowDialog().Value ? openFileDialog.FileName : string.Empty;
             }
+            else
+            {
+                using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
+                {
+                    var result = dialog.ShowDialog();
+                    actionTxt.Text = dialog.SelectedPath;
+                }
+            }
+
         }
 
         private void actionTypeCb_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -42,25 +50,25 @@ namespace PersonalAssistant.ClassicAssistant
                     actionTxt.IsEnabled = false;
                     actionLbl.Content = Properties.Resources.Action;
                     break;
-                case 1:
+                case (int)ActionType.OpenUrl:
                     fileDialogBtn.IsEnabled = false;
                     actionTxt.Text = string.Empty;
                     actionTxt.IsEnabled = true;
                     actionLbl.Content = Properties.Resources.URLAddress;
                     break;
-                case 2:
+                case (int)ActionType.OpenFile:
                     fileDialogBtn.IsEnabled = true;
                     actionTxt.Text = string.Empty;
                     actionTxt.IsEnabled = true;
                     actionLbl.Content = Properties.Resources.FilePath;
                     break;
-                case 3:
+                case (int)ActionType.RunProcess:
                     fileDialogBtn.IsEnabled = true;
                     actionTxt.Text = string.Empty;
                     actionTxt.IsEnabled = true;
                     actionLbl.Content = Properties.Resources.ProgramPath;
                     break;
-                case 4:
+                case (int)ActionType.OpenDirectory:
                     fileDialogBtn.IsEnabled = true;
                     actionTxt.Text = string.Empty;
                     actionTxt.IsEnabled = true;
@@ -73,7 +81,7 @@ namespace PersonalAssistant.ClassicAssistant
         {
             if (string.IsNullOrEmpty(commandTxt.Text) || string.IsNullOrEmpty(commandTxt.Text) || (actionTypeCb.SelectedIndex != 0 && string.IsNullOrEmpty(actionTxt.Text)))
             {
-                MessageBox.Show("Należy uzupełnić wszystkie pola!", "BŁĄD", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.RequiredFieldNotFill, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -91,11 +99,11 @@ namespace PersonalAssistant.ClassicAssistant
             {
                 _assistantService.StoreCommand(newCommand, @"ClassicAssistant/Commands.json");
                 ClassicPersonalAssistant.UpdateCommandsList();
-                MessageBox.Show("Komenda została dodana", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Properties.Resources.CommandHasBeenAdded, Properties.Resources.Information, MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Wystąpił błąd podczas zapisu danych: " + ex.Message, "BŁĄD", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.SaveDataError + ex.Message, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

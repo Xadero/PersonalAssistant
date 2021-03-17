@@ -2,6 +2,7 @@
 using PersonalAssistant.Common;
 using PersonalAssistant.Service.Interfaces;
 using System.IO;
+using System.Linq;
 
 namespace PersonalAssistant.Service.Services
 {
@@ -11,6 +12,10 @@ namespace PersonalAssistant.Service.Services
         {
             var jsonData = File.ReadAllText(filePath);
             var commands = JsonConvert.DeserializeObject<CommandConfig>(jsonData) ?? new CommandConfig();
+
+            if (commands.Command.Where(x => x.CommandText.ToLower().Contains(command.CommandText.ToLower())).Any())
+                throw new System.Exception("Komenda o takiej treści już istnieje!");
+
             commands.Command.Add(command);
             jsonData = JsonConvert.SerializeObject(commands);
             File.WriteAllText(filePath, jsonData);

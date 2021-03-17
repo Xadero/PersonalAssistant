@@ -79,6 +79,24 @@ namespace PersonalAssistant.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Powiedz, jeżeli będziesz mnie potrzebował.
+        /// </summary>
+        public static string AskIfYouNeed {
+            get {
+                return ResourceManager.GetString("AskIfYouNeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Komenda została dodana.
+        /// </summary>
+        public static string CommandHasBeenAdded {
+            get {
+                return ResourceManager.GetString("CommandHasBeenAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
         public static string CommndsFilePath {
@@ -88,11 +106,29 @@ namespace PersonalAssistant.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Czy wykonać tą operację?.
+        /// </summary>
+        public static string ConfirmOperation {
+            get {
+                return ResourceManager.GetString("ConfirmOperation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ścieżka katalogu.
         /// </summary>
         public static string DirectoryPath {
             get {
                 return ResourceManager.GetString("DirectoryPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BŁĄD.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
             }
         }
         
@@ -115,11 +151,38 @@ namespace PersonalAssistant.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Informacja.
+        /// </summary>
+        public static string Information {
+            get {
+                return ResourceManager.GetString("Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operację anulowano.
+        /// </summary>
+        public static string OperationCancelled {
+            get {
+                return ResourceManager.GetString("OperationCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ścieżka programu.
         /// </summary>
         public static string ProgramPath {
             get {
                 return ResourceManager.GetString("ProgramPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Należy uzupełnić wymagane pola!.
+        /// </summary>
+        public static string RequiredFieldNotFill {
+            get {
+                return ResourceManager.GetString("RequiredFieldNotFill", resourceCulture);
             }
         }
         
@@ -133,6 +196,24 @@ namespace PersonalAssistant.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sara, jesteś potrzebna.
+        /// </summary>
+        public static string SaraIsNeeded {
+            get {
+                return ResourceManager.GetString("SaraIsNeeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wystąpił błąd podczas zapisu danych:.
+        /// </summary>
+        public static string SaveDataError {
+            get {
+                return ResourceManager.GetString("SaveDataError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sara, pokaż komendy.
         /// </summary>
         public static string ShowCommands {
@@ -142,11 +223,92 @@ namespace PersonalAssistant.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dodaj komendę.
+        /// </summary>
+        public static string SysTrayAddCommand {
+            get {
+                return ResourceManager.GetString("SysTrayAddCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zamknij.
+        /// </summary>
+        public static string SysTrayCloseApplication {
+            get {
+                return ResourceManager.GetString("SysTrayCloseApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wyłącz Sarę.
+        /// </summary>
+        public static string SysTrayDisableRecognizer {
+            get {
+                return ResourceManager.GetString("SysTrayDisableRecognizer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Włącz Sarę.
+        /// </summary>
+        public static string SysTrayEnableRecognizer {
+            get {
+                return ResourceManager.GetString("SysTrayEnableRecognizer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pokaż komendy.
+        /// </summary>
+        public static string SysTrayShowCommands {
+            get {
+                return ResourceManager.GetString("SysTrayShowCommands", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Konfiguracja.
+        /// </summary>
+        public static string SysTrayShowConfig {
+            get {
+                return ResourceManager.GetString("SysTrayShowConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sara, czas na przerwę.
+        /// </summary>
+        public static string TimeForBreak {
+            get {
+                return ResourceManager.GetString("TimeForBreak", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adres strony.
         /// </summary>
         public static string URLAddress {
             get {
                 return ResourceManager.GetString("URLAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Co mogę dla Ciebie zrobić?.
+        /// </summary>
+        public static string WhatCanDo {
+            get {
+                return ResourceManager.GetString("WhatCanDo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tak.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

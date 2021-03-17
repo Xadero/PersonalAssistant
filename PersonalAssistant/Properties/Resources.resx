@@ -123,11 +123,23 @@
   <data name="AddNewCommand" xml:space="preserve">
     <value>Sara, dodaj komendę</value>
   </data>
+  <data name="AskIfYouNeed" xml:space="preserve">
+    <value>Powiedz, jeżeli będziesz mnie potrzebował</value>
+  </data>
+  <data name="CommandHasBeenAdded" xml:space="preserve">
+    <value>Komenda została dodana</value>
+  </data>
   <data name="CommndsFilePath" xml:space="preserve">
     <value />
   </data>
+  <data name="ConfirmOperation" xml:space="preserve">
+    <value>Czy wykonać tą operację?</value>
+  </data>
   <data name="DirectoryPath" xml:space="preserve">
     <value>Ścieżka katalogu</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>BŁĄD</value>
   </data>
   <data name="FilePath" xml:space="preserve">
     <value>Ścieżka pliku</value>
@@ -135,16 +147,58 @@
   <data name="FormIsAlreadyOpen" xml:space="preserve">
     <value>Formularz jest już uruchomiony</value>
   </data>
+  <data name="Information" xml:space="preserve">
+    <value>Informacja</value>
+  </data>
+  <data name="OperationCancelled" xml:space="preserve">
+    <value>Operację anulowano</value>
+  </data>
   <data name="ProgramPath" xml:space="preserve">
     <value>Ścieżka programu</value>
+  </data>
+  <data name="RequiredFieldNotFill" xml:space="preserve">
+    <value>Należy uzupełnić wymagane pola!</value>
   </data>
   <data name="SaraIntroduce" xml:space="preserve">
     <value>Cześć, jestem Sara. W czym mogę pomóc?</value>
   </data>
+  <data name="SaraIsNeeded" xml:space="preserve">
+    <value>Sara, jesteś potrzebna</value>
+  </data>
+  <data name="SaveDataError" xml:space="preserve">
+    <value>Wystąpił błąd podczas zapisu danych:</value>
+  </data>
   <data name="ShowCommands" xml:space="preserve">
     <value>Sara, pokaż komendy</value>
   </data>
+  <data name="SysTrayAddCommand" xml:space="preserve">
+    <value>Dodaj komendę</value>
+  </data>
+  <data name="SysTrayCloseApplication" xml:space="preserve">
+    <value>Zamknij</value>
+  </data>
+  <data name="SysTrayDisableRecognizer" xml:space="preserve">
+    <value>Wyłącz Sarę</value>
+  </data>
+  <data name="SysTrayEnableRecognizer" xml:space="preserve">
+    <value>Włącz Sarę</value>
+  </data>
+  <data name="SysTrayShowCommands" xml:space="preserve">
+    <value>Pokaż komendy</value>
+  </data>
+  <data name="SysTrayShowConfig" xml:space="preserve">
+    <value>Konfiguracja</value>
+  </data>
+  <data name="TimeForBreak" xml:space="preserve">
+    <value>Sara, czas na przerwę</value>
+  </data>
   <data name="URLAddress" xml:space="preserve">
     <value>Adres strony</value>
+  </data>
+  <data name="WhatCanDo" xml:space="preserve">
+    <value>Co mogę dla Ciebie zrobić?</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Tak</value>
   </data>
 </root>

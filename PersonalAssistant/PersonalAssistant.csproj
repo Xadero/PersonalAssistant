@@ -111,6 +111,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ClassicAssistant\Configuration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GothicAssistant\Views\GothicPersonalAssistant.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -127,6 +131,9 @@
     </Compile>
     <Compile Include="ClassicAssistant\CommandManagement.xaml.cs">
       <DependentUpon>CommandManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClassicAssistant\Configuration.xaml.cs">
+      <DependentUpon>Configuration.xaml</DependentUpon>
     </Compile>
     <Compile Include="GothicAssistant\eAssistant.cs" />
     <Compile Include="GothicAssistant\GothicAssistantResources.Designer.cs">
@@ -173,6 +180,7 @@
     <Content Include="ClassicAssistant\Commands.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="ClassicAssistant\Configuration.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -268,9 +276,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ClassicAssistant\Images\" />
-    <Folder Include="ClassicAssistant\Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
